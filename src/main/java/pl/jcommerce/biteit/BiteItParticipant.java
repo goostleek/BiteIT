@@ -17,7 +17,7 @@ public class BiteItParticipant {
 	private Mood mood;
 
 	public BiteItParticipant(String firstName, String lastName, LocalDate birthDate, Mood mood) {
-		Objects.requireNonNull(this.firstName = firstName, "firtsName must not be null");
+		Objects.requireNonNull(this.firstName = firstName, "firstName must not be null");
 		Objects.requireNonNull(this.lastName = lastName, "lastName must not be null");
 		Objects.requireNonNull(this.birthDate = birthDate, "birthDate must not be null");
 		setMood(mood);

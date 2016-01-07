@@ -3,22 +3,54 @@ package pl.jcommerce.biteit;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import pl.jcommerce.biteit.BiteItParticipant.Mood;
 
 public class BiteItParticipantTest {
 
+	@Rule
+	public final ExpectedException npe = ExpectedException.none();
+
 	@Test
 	public void shouldGetProperAge() {
 		final BiteItParticipant participant = createBiteItParticipant();
 		assertThat(participant.getAge(), is(35));
+	}
+
+	@Test
+	public void shouldThrowNpeOnNullFirstName() {
+		npe.expect(NullPointerException.class);
+		npe.expectMessage(containsString("firstName"));
+		BiteItParticipant.builder().build();
+	}
+
+	@Test
+	public void shouldThrowNpeOnNullLastName() {
+		npe.expect(NullPointerException.class);
+		npe.expectMessage(containsString("lastName"));
+		BiteItParticipant.builder()
+			.firstName("Marcin")
+			.build();
+	}
+
+	@Test
+	public void shouldThrowNpeOnNullBirthDate() {
+		npe.expect(NullPointerException.class);
+		npe.expectMessage(containsString("birthDate"));
+		BiteItParticipant.builder()
+			.firstName("Marcin")
+			.lastName("Kłopotek")
+			.build();
 	}
 
 	@Test
@@ -71,13 +103,13 @@ public class BiteItParticipantTest {
 		happyMarcin.setMood(Mood.HAPPY);
 		assertThat(happyMarcin.toString(), stringContainsInOrder(
 			Arrays.asList(
-					happyMarcin.getClass().getSimpleName(),
-					happyMarcin.getFirstName(),
-					happyMarcin.getLastName(),
-					happyMarcin.getBirthDate().toString(),
-					happyMarcin.getMood().name(),
-					happyMarcin.getMood().getDescription(),
-					String.valueOf(happyMarcin.getAge())
+				happyMarcin.getClass().getSimpleName(),
+				happyMarcin.getFirstName(),
+				happyMarcin.getLastName(),
+				happyMarcin.getBirthDate().toString(),
+				happyMarcin.getMood().name(),
+				happyMarcin.getMood().getDescription(),
+				String.valueOf(happyMarcin.getAge())
 				)
 			)
 		);
