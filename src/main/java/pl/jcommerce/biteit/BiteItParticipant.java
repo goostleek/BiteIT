@@ -2,12 +2,15 @@ package pl.jcommerce.biteit;
 
 import java.time.LocalDate;
 
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
+@Getter
 public class BiteItParticipant {
 
 	@NonNull
@@ -17,31 +20,12 @@ public class BiteItParticipant {
 	@NonNull
 	private final LocalDate birthDate;
 	private int age;
+	@Setter
 	private Mood mood;
 
 	public BiteItParticipant(String firstName, String lastName, LocalDate birthDate, Mood mood) {
 		this(firstName, lastName, birthDate);
 		setMood(mood);
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public LocalDate getBirthDate() {
-		return birthDate;
-	}
-
-	public Mood getMood() {
-		return mood;
-	}
-
-	public void setMood(Mood mood) {
-		this.mood = mood;
 	}
 
 	public int getAge() {
