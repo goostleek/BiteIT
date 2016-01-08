@@ -3,12 +3,10 @@ package pl.jcommerce.biteit;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class BiteItParticipant {
-
-	private static final Logger log = LoggerFactory.getLogger(BiteItParticipant.class);
 
 	private final String firstName;
 	private final String lastName;
