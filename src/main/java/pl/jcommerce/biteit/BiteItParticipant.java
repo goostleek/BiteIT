@@ -2,6 +2,8 @@ package pl.jcommerce.biteit;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -13,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Getter
 @EqualsAndHashCode(exclude = {"age", "mood"})
+@Builder
+@AllArgsConstructor
 public class BiteItParticipant {
 
 	@NonNull
@@ -25,11 +29,6 @@ public class BiteItParticipant {
 	@Setter
 	private Mood mood;
 
-	public BiteItParticipant(String firstName, String lastName, LocalDate birthDate, Mood mood) {
-		this(firstName, lastName, birthDate);
-		setMood(mood);
-	}
-
 	public int getAge() {
 		if (age == 0) {
 			log.debug("calculating age...");
@@ -38,10 +37,6 @@ public class BiteItParticipant {
 			log.debug("age already calculated to {}", age);
 		}
 		return age;
-	}
-
-	public static BiteItParticipantBuilder builder() {
-		return new BiteItParticipantBuilder();
 	}
 
 	public static enum Mood {
@@ -66,46 +61,6 @@ public class BiteItParticipant {
 		public String toString() {
 			return name() + "(" + getDescription() + ")";
 		}
-	}
-
-	public static class BiteItParticipantBuilder {
-
-		private String firstName;
-		private String lastName;
-		private LocalDate birthDate;
-		private Mood mood;
-
-		public BiteItParticipantBuilder() {
-		}
-
-		public BiteItParticipantBuilder firstName(String firstName) {
-			this.firstName = firstName;
-			return this;
-		}
-
-		public BiteItParticipantBuilder lastName(String lastName) {
-			this.lastName = lastName;
-			return this;
-		}
-
-		public BiteItParticipantBuilder birthDate(LocalDate birthDate) {
-			this.birthDate = birthDate;
-			return this;
-		}
-
-		public BiteItParticipantBuilder mood(Mood mood) {
-			this.mood = mood;
-			return this;
-		}
-
-		public BiteItParticipant build() {
-			if (mood == null) {
-				return new BiteItParticipant(firstName, lastName, birthDate);
-			} else {
-				return new BiteItParticipant(firstName, lastName, birthDate, mood);
-			}
-		}
-
 	}
 
 	@Override
