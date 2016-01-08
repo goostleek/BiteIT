@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @EqualsAndHashCode(exclude = {"age", "mood"})
 @Builder
 @AllArgsConstructor
+@ToString
 public class BiteItParticipant {
 
 	@NonNull
@@ -25,9 +27,9 @@ public class BiteItParticipant {
 	private final String lastName;
 	@NonNull
 	private final LocalDate birthDate;
-	private int age;
 	@Setter
 	private Mood mood;
+	private int age;
 
 	public int getAge() {
 		if (age == 0) {
@@ -61,18 +63,6 @@ public class BiteItParticipant {
 		public String toString() {
 			return name() + "(" + getDescription() + ")";
 		}
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder builder = new StringBuilder();
-		return builder.append("BiteItParticipant [\n\tgetFirstName()=").append(getFirstName())
-				.append(",\n\tgetLastName()=").append(getLastName())
-				.append(",\n\tgetBirthDate()=").append(getBirthDate())
-				.append(",\n\tgetMood()=").append(getMood())
-				.append(",\n\tgetAge()=").append(getAge())
-				.append("\n]")
-				.toString();
 	}
 
 }
