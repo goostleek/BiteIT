@@ -1,28 +1,27 @@
 package pl.jcommerce.biteit;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 public class BiteItParticipant {
 
+	@NonNull
 	private final String firstName;
+	@NonNull
 	private final String lastName;
+	@NonNull
 	private final LocalDate birthDate;
 	private int age;
 	private Mood mood;
 
 	public BiteItParticipant(String firstName, String lastName, LocalDate birthDate, Mood mood) {
-		Objects.requireNonNull(this.firstName = firstName, "firstName must not be null");
-		Objects.requireNonNull(this.lastName = lastName, "lastName must not be null");
-		Objects.requireNonNull(this.birthDate = birthDate, "birthDate must not be null");
+		this(firstName, lastName, birthDate);
 		setMood(mood);
-	}
-
-	public BiteItParticipant(String firstName, String lastName, LocalDate birthDate) {
-		this(firstName, lastName, birthDate, Mood.UNCERTAIN);
 	}
 
 	public String getFirstName() {
