@@ -41,6 +41,7 @@ public class BiteItParticipant {
 		return age;
 	}
 
+	@AllArgsConstructor
 	public static enum Mood {
 
 		HAPPY("Wow! I'm participating in BiteIT :)"),
@@ -49,15 +50,8 @@ public class BiteItParticipant {
 		PESSIMISTIC("It won't work :("),
 		UNCERTAIN("I dunno....");
 
+		@Getter
 		private final String description;
-
-		private Mood(String description) {
-			this.description = description;
-		}
-
-		public String getDescription() {
-			return description;
-		}
 
 		@Override
 		public String toString() {
