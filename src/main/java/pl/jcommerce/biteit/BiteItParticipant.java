@@ -2,6 +2,7 @@ package pl.jcommerce.biteit;
 
 import java.time.LocalDate;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Getter
+@EqualsAndHashCode(exclude = {"age", "mood"})
 public class BiteItParticipant {
 
 	@NonNull
@@ -40,40 +42,6 @@ public class BiteItParticipant {
 
 	public static BiteItParticipantBuilder builder() {
 		return new BiteItParticipantBuilder();
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + getBirthDate().hashCode();
-		result = prime * result + getFirstName().hashCode();
-		result = prime * result + getLastName().hashCode();
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof BiteItParticipant)) {
-			return false;
-		}
-		final BiteItParticipant other = (BiteItParticipant) obj;
-		if (!getBirthDate().equals(other.getBirthDate())) {
-			return false;
-		}
-		if (!getFirstName().equals(other.getFirstName())) {
-			return false;
-		}
-		if (!getLastName().equals(other.getLastName())) {
-			return false;
-		}
-		return true;
 	}
 
 	public static enum Mood {
