@@ -2,6 +2,9 @@ package pl.jcommerce.biteit;
 
 import java.time.LocalDate;
 
+import javax.inject.Inject;
+
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,11 +16,11 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Getter
 @EqualsAndHashCode(exclude = {"age", "mood"})
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE, onConstructor = @__(@Deprecated))
 @ToString
 public class BiteItParticipant {
 
